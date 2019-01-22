@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .mapsview {
+            width: 100vw;
+            height: 70vh;
+        }
+    </style>
+    <script src='https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ>&lang=ru_RU' type="text/javascript"></script>
+</head>
+<body>
+<script>ymaps.ready(init);
+
+function init() {
+
+    // Создание карты.
+    var yandexmap = new ymaps.Map("map", {
+        // Координаты центра карты.
+        // Порядок по умолчанию: «широта, долгота».
+        // Чтобы не определять координаты центра карты вручную,
+        // воспользуйтесь инструментом Определение координат.
+        center: [56.854041, 35.869644],
+
+        // Уровень масштабирования. Допустимые значения:
+        // от 0 (весь мир) до 19.
+        zoom: 19
+    });
+
+    yandexmap.geoObjects
+        .add(new ymaps.Placemark([56.853898, 35.869270], {
+            iconContent: 'Значит я тут',
+            hintContent: 'Ну да за стеной атлетик'
+        }, {
+            preset: 'islands#blackStretchyIcon',
+            iconColor: '#0095b6'
+        }))
+        .add(new ymaps.Placemark([56.853998, 35.870603], {
+            iconContent: 'А тут туалет',
+            hintContent: 'Тут можно пописать и покакать'
+        }, {
+            preset: 'islands#blackStretchyIcon',
+            iconColor: '#0095b6'
+        }));
+}
+</script>
+<div id="map" class="mapsview"></div>
+</body>
+</html>
